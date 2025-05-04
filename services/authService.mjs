@@ -1,19 +1,29 @@
-import Usuario from "../models/Usuario.mjs";
+import Usuario from "../models/usuario.mjs";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
+import generarToken from "../utils/generarToken.mjs";
 
 // Registro de usuario
-export async function registrarUsuario(nombre, email, password) {
+export async function registrarUsuario(nombre, email, password, rol = "usuario") {
   const usuarioExistente = await Usuario.findOne({ email });
   if (usuarioExistente) {
     throw { mensaje: "El correo ya está registrado", codigo: 400 };
   }
 
   const hash = await bcrypt.hash(password, 10);
-  const nuevoUsuario = new Usuario({ nombre, email, password: hash });
+  const nuevoUsuario = new Usuario({ nombre, email, password: hash, rol });
   await nuevoUsuario.save();
 
-  return { mensaje: "Usuario registrado correctamente" };
+  const token = generarToken(nuevoUsuario._id, nuevoUsuario.rol);
+
+  return {
+    mensaje: "Usuario registrado correctamente",
+    token,
+    usuario: {
+      id: nuevoUsuario._id,
+      nombre: nuevoUsuario.nombre,
+      rol: nuevoUsuario.rol,
+    },
+  };
 }
 
 // Login de usuario
@@ -28,11 +38,7 @@ export async function loginUsuario(email, password) {
     throw { mensaje: "Contraseña incorrecta", codigo: 401 };
   }
 
-  const token = jwt.sign(
-    { id: usuario._id, rol: usuario.rol },
-    process.env.JWT_SECRET,
-    { expiresIn: "1d" }
-  );
+  const token = generarToken(usuario._id, usuario.rol);
 
   return {
     mensaje: "Inicio de sesión exitoso",

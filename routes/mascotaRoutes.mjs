@@ -32,7 +32,7 @@ router.put("/actualizar-mascota/:id", verificarToken, verificarRol("refugio"), a
 router.delete("/eliminar-mascota/:id", verificarToken, verificarRol("refugio"), eliminarMascotaController);
 
 // Adoptar mascota (adoptante)
-router.put("/:id/adoptar", verificarToken, verificarRol("adoptante"), adoptarMascotaController);
+router.put("/adoptar/:id", verificarToken, verificarRol("adoptante"), adoptarMascotaController);
 
 export default router;
 
