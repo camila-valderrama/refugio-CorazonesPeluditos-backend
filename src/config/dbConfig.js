@@ -2,8 +2,8 @@ import mongoose from 'mongoose';
 
 export async function connectDB() {
     try{
-        await mongoose.connect(
-        'mongodb+srv://camival00:ZP0AZp7nqwZefgOV@cluster0.ffelgka.mongodb.net/refugio_db', {
+        mongoose.connect(
+        `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}`, {
             serverSelectionTimeoutMS: 5000
         });
         console.log('Conexión exitosa a MongoDB');

@@ -4,7 +4,7 @@ import {
     obtenerRefugioPorId,
     actualizarRefugio,
     eliminarRefugio
-  } from "../services/refugioService.mjs";
+  } from "../services/refugioService.js";
   
   export async function crearRefugioController(req, res) {
     try {

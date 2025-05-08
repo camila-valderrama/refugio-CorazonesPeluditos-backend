@@ -1,4 +1,4 @@
-import Refugio from "../models/Refugio.mjs";
+import Refugio from "../models/Refugio.js";
 
 export async function crearRefugio(datos) {
   return await Refugio.create(datos);

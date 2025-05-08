@@ -1,4 +1,4 @@
-import Mascota from "../models/Mascota.mjs";
+import Mascota from "../models/Mascota.js";
 
 // Crear nueva mascota (solo refugios)
 export async function crearMascota(datos) {

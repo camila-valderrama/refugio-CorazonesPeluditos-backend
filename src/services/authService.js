@@ -1,6 +1,6 @@
-import Usuario from "../models/usuario.mjs";
+import Usuario from "../models/usuario.js";
 import bcrypt from "bcrypt";
-import generarToken from "../utils/generarToken.mjs";
+import generarToken from "../utils/generarToken.js";
 
 // Registro de usuario
 export async function registrarUsuario(nombre, email, password, rol = "usuario") {

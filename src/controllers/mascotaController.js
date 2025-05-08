@@ -7,9 +7,9 @@ import {
   actualizarMascota,
   eliminarMascota,
   adoptarMascota,
-} from "../services/mascotaService.mjs";
+} from "../services/mascotaService.js";
 
-import Refugio from "../models/Refugio.mjs";
+import Refugio from "../models/Refugio.js";
 
 // Crear nueva mascota (solo refugio)
 export async function crearMascotaController(req, res) {

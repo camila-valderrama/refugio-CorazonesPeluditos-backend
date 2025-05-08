@@ -7,9 +7,8 @@ import {
   actualizarMascotaController,
   eliminarMascotaController,
   adoptarMascotaController,
-} from "../controllers/mascotaController.mjs";
-import { verificarToken } from "../middleware/authMiddleware.mjs";
-import { verificarRol } from "../middleware/roleMiddleware.mjs";
+} from "../controllers/mascotaController.js";
+import { verificarToken } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
@@ -23,16 +22,16 @@ router.get("/mascotas-refugio", verificarToken, obtenerMascotasDeRefugioControll
 router.get("/mascota/:id", verificarToken, obtenerMascotaPorIdController);
 
 // Crear nueva mascota (solo refugio)
-router.post("/crear-mascota", verificarToken, verificarRol("refugio"), crearMascotaController);
+router.post("/crear-mascota", verificarToken, crearMascotaController);
 
-// Actualizar mascota (solo refugio si lo restringís más adelante)
-router.put("/actualizar-mascota/:id", verificarToken, verificarRol("refugio"), actualizarMascotaController);
+// Actualizar mascota
+router.put("/actualizar-mascota/:id", verificarToken, actualizarMascotaController);
 
 // Eliminar mascota
-router.delete("/eliminar-mascota/:id", verificarToken, verificarRol("refugio"), eliminarMascotaController);
+router.delete("/eliminar-mascota/:id", verificarToken, eliminarMascotaController);
 
 // Adoptar mascota (adoptante)
-router.put("/adoptar/:id", verificarToken, verificarRol("adoptante"), adoptarMascotaController);
+router.put("/adoptar/:id", verificarToken, adoptarMascotaController);
 
 export default router;
 

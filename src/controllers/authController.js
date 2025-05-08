@@ -1,4 +1,4 @@
-import { registrarUsuario, loginUsuario } from '../services/authService.mjs';
+import { registrarUsuario, loginUsuario } from '../services/authService.js';
 
 // Controlador para registrar un nuevo usuario
 export async function registrarUsuarioController(req, res) {
@@ -21,3 +21,5 @@ export async function loginUsuarioController(req, res) {
     res.status(error.codigo || 500).send({ mensaje: error.mensaje || "Error al iniciar sesión" });
   }
 }
+
+

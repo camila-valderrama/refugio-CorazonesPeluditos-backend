@@ -2,8 +2,8 @@ import express from "express";
 import {
   registrarUsuarioController,
   loginUsuarioController
-} from "../controllers/authController.mjs";
-import { verificarToken } from "../middleware/authMiddleware.mjs";
+} from "../controllers/authController.js";
+import { verificarToken } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
