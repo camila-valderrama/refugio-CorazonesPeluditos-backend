@@ -1,6 +1,10 @@
 import Refugio from "../models/Refugio.js";
 
 export async function crearRefugio(datos) {
+  const yaExiste = await Refugio.findOne({ usuario: datos.usuario });
+  if (yaExiste) {
+    throw new Error("El usuario ya tiene un refugio asignado");
+  }
   return await Refugio.create(datos);
 }
 
